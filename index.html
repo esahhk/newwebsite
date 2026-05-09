@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>esahhk站点</title>
+    <style>
+        /* 重置与全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f;
+            color: #eee;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #00ffff;
+        }
+
+        header {
+            background: linear-gradient(135deg, #111 0%, #222 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #111;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            padding: 15px 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: #eee;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #1e1e1e;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 30px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            text-align: center;
+            color: #1e90ff;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        .contact p, .contact ul {
+            text-align: center;
+        }
+
+        footer {
+            background-color: #111;
+            color: #888;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        button {
+            background-color: #1e90ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #00ffff;
+        }
+
+        /* 动画 */
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-50px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            nav { flex-direction: column; }
+            nav a { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>esahhk站点</h1>
+    <p>空间</p>
+</header>
+
+<nav>
+    <a href="#about">关于</a>
+    <a href="#projects">子站链接</a>
+    <a href="#contact">联系</a>
+</nav>
+
+<section id="about">
+    <h2>关于</h2>
+    <p>站点<strong>esahhk</strong></p>
+</section>
+
+<section id="word">
+    <h2>------</h2>
+    <p>基本都是ai写的,太伟大了ai</p>
+</section>
+
+<section id="projects">
+    <h2>子站链接</h2>
+    <div style="text-align:center;">
+        <button onclick="window.open('https://news.esahhk.xyz','_blank')">其他版本</button>
+        <button onclick="window.open('https://word.esahhk.xyz','_blank')">文本</button>
+        <button onclick="window.open('https://star.esahhk.xyz','_blank')">收藏</button>
+        <button onclick="window.open('https://main.esahhk.xyz','_blank')">Main</button>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>联系</h2>
+    <p>邮箱: <a href="mailto:esahhk@outlook.com">esahhk@outlook.com</a></p>
+    <p>QQ: <a href="mailto:639554885@qq.com">639554885@qq.com</a></p>
+</section>
+
+<footer>
+    &copy; 2026 esahhk. 版权所有.
+</footer>
+
+<script>
+    // 页面滚动动画效果
+    const sections = document.querySelectorAll('section');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+</script>
+
+</body>
+</html>
