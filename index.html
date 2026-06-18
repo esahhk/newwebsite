@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>esahhk站点</title>
+    <title>esahhk</title>
     <style>
-        /* 重置与全局样式 */
         * {
             margin: 0;
             padding: 0;
@@ -129,7 +128,7 @@
             background-color: #00ffff;
         }
 
-        /* 动画 */
+        
         @keyframes fadeInDown {
             0% { opacity: 0; transform: translateY(-50px);}
             100% { opacity: 1; transform: translateY(0);}
@@ -140,7 +139,7 @@
             100% { opacity: 1; transform: translateY(0);}
         }
 
-        /* 响应式 */
+        
         @media (max-width: 600px) {
             header h1 { font-size: 2.2rem; }
             nav { flex-direction: column; }
@@ -151,28 +150,37 @@
 <body>
 
 <header>
-    <h1>esahhk站点</h1>
+    <h1>esahhk</h1>
     <p>空间</p>
 </header>
 
 <nav>
     <a href="#about">关于</a>
-    <a href="#projects">子站链接</a>
+    <a href="#projects">子链接</a>
     <a href="#contact">联系</a>
 </nav>
 
 <section id="about">
     <h2>关于</h2>
-    <p style="text-align: center;">站点 by esahhk</p>
+    <p style="text-align: center;">by esahhk</p>
+    <p style="text-align: center;">🎵✋wonderhoi✋🎵</p>
 </section>
 
 <section id="word">
-    <h2>------</h2>
+    <h2>没什么用处</h2>
     <p style="text-align: center;">点击此处输入文本</p>
+    <p style="text-align: center;">🎵</p>
+    <p style="text-align: center;">
+    <a href="https://by.esahhk.xyz" target="_blank" style="color: inherit; text-decoration: none; cursor: pointer;">
+    点击此处跳转属性
+    </a>
+    </p>
+    <p style="text-align: center;">早上好👍</p>
+    <p style="text-align: center;">写这段文案时候是星期四所以请v我50kfc😋</p>
 </section>
 
 <section id="projects">
-    <h2>子站链接</h2>
+    <h2>子链接</h2>
     <div style="text-align:center;">
         <button onclick="window.open('https://news.esahhk.xyz','_blank')">其他版本</button>
         <button onclick="window.open('https://word.esahhk.xyz','_blank')">文本</button>
@@ -190,14 +198,16 @@
     <h2>联系</h2>
     <p>邮箱: <a href="mailto:esahhk@outlook.com">esahhk@outlook.com</a></p>
     <p>QQ: <a href="mailto:639554885@qq.com">639554885@qq.com</a></p>
+    <button onclick="window.open('https://space.bilibili.com/2058030122/','_blank')">b站</button>
+
 </section>
 
 <footer>
-    &copy; 2026 esahhk. 版权所有.
+     2026 by esahhk
 </footer>
 
 <script>
-    // 页面滚动动画效果
+    
     const sections = document.querySelectorAll('section');
 
     const observer = new IntersectionObserver(entries => {
