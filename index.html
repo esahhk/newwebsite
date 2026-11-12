@@ -128,7 +128,15 @@
             background-color: #00ffff;
         }
 
-        
+        button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        button:disabled:hover {
+            background-color: gray;
+        }
+
         @keyframes fadeInDown {
             0% { opacity: 0; transform: translateY(-50px);}
             100% { opacity: 1; transform: translateY(0);}
@@ -139,7 +147,6 @@
             100% { opacity: 1; transform: translateY(0);}
         }
 
-        
         @media (max-width: 600px) {
             header h1 { font-size: 2.2rem; }
             nav { flex-direction: column; }
@@ -181,17 +188,7 @@
 
 <section id="projects">
     <h2>子链接</h2>
-    <div style="text-align:center;">
-        <button onclick="window.open('https://world.esahhk.xyz','_blank')">前往世界版本</button>
-        <button onclick="window.open('https://word.esahhk.xyz','_blank')">文本</button>
-        <button onclick="window.open('https://star.esahhk.xyz','_blank')">收藏</button>
-        <button onclick="window.open('https://main.esahhk.xyz','_blank')">前往Main</button>
-        <button onclick="window.open('https://play.esahhk.xyz','_blank')">小游戏</button>
-        <button onclick="window.open('https://bili.esahhk.xyz','_blank')">收藏夹</button>
-        <button disabled style="background-color: gray; cursor: not-allowed;">
-    test
-</button>
-    </div>
+    <div id="link-container" style="text-align:center;"></div>
 </section>
 
 <section id="contact">
@@ -199,20 +196,53 @@
     <p>邮箱: <a href="mailto:esahhk@outlook.com">esahhk@outlook.com</a></p>
     <p>QQ: <a href="mailto:639554885@qq.com">639554885@qq.com</a></p>
     <button onclick="window.open('https://space.bilibili.com/2058030122/','_blank')">b站</button>
-
 </section>
 
 <footer>
-     2026 by esahhk
+    2026 by esahhk
 </footer>
 
 <script>
-    
+    const linkList = [
+        { text: '前往世界版本',      url: 'https://world.esahhk.xyz' },
+        { text: '文本',              url: 'https://word.esahhk.xyz' },
+        { text: '收藏',              url: 'https://star.esahhk.xyz' },
+        { text: '前往Main',          url: 'https://main.esahhk.xyz' },
+        { text: '小游戏',            url: 'https://play.esahhk.xyz' },
+        { text: '收藏夹',            url: 'https://bili.esahhk.xyz' },
+        { text: 'ds搜索页',          url: 'https://dssc.esahhk.xyz' },
+        { text: '能猫骑车',          url: 'https://xcar.esahhk.xyz' },
+        { text: 'Claude同人文（？',  url: 'https://cltr.esahhk.xyz' },
+        { text: 'test',              url: null, disabled: true }
+    ];
+
+    function renderLinks() {
+        const container = document.getElementById('link-container');
+        container.innerHTML = '';
+
+        linkList.forEach(item => {
+            const btn = document.createElement('button');
+            btn.textContent = item.text;
+
+            if (item.disabled || !item.url) {
+                btn.disabled = true;
+            } else {
+                btn.addEventListener('click', () => {
+                    window.open(item.url, '_blank');
+                });
+            }
+
+            container.appendChild(btn);
+        });
+    }
+
+    renderLinks();
+
     const sections = document.querySelectorAll('section');
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if(entry.isIntersecting){
+            if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
