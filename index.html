@@ -1,256 +1,375 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>esahhk</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#151515">
+<title>esahhk</title>
+<meta name="description" content="esahhk 的个人空间，一些子站点与联系方式。">
+<meta property="og:title" content="esahhk">
+<meta property="og:description" content="esahhk 的个人空间，一些子站点与联系方式。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://esahhk.xyz">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23151515'/><text x='50' y='52' font-family='Georgia,serif' font-size='60' fill='%23d97757' text-anchor='middle' dominant-baseline='central'>e</text></svg>">
+<style>
+  :root {
+    color-scheme: dark;
+    --surface-0: #0b0b0b;
+    --surface-1: #151515;
+    --surface-2: #1a1a19;
+    --surface-3: #20201f;
+    --clay: #d97757;
+    --clay-hover: #e88e6f;
+    --sky: #6ea8d8;
+    --sky-hover: #8fc0e8;
+    --mint: #7fc4a3;
+    --gold: #e0b45c;
+    --lilac: #a894d4;
+    --text-primary: #f2f0e8;
+    --text-secondary: #b8b6ac;
+    --text-muted: #8f8e85;
+    --border: hsla(0, 0%, 100%, 0.09);
+    --border-strong: hsla(0, 0%, 100%, 0.18);
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Songti SC", "Noto Serif SC", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  }
 
-        html {
-            scroll-behavior: smooth;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f0f0f;
-            color: #eee;
-            line-height: 1.6;
-        }
+  html { scroll-behavior: smooth; }
 
-        a {
-            color: #1e90ff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+  body {
+    font-family: var(--sans);
+    background: var(--surface-1);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        a:hover {
-            color: #00ffff;
-        }
+  a { color: var(--sky); text-decoration: none; transition: color .18s ease; }
+  a:hover { color: var(--sky-hover); text-decoration: underline; text-underline-offset: 3px; }
 
-        header {
-            background: linear-gradient(135deg, #111 0%, #222 100%);
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+  .wrap { max-width: 620px; margin: 0 auto; padding: 0 24px; }
 
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            animation: fadeInDown 1s ease forwards;
-        }
+  header {
+    padding: 96px 24px 72px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: radial-gradient(ellipse 80% 120% at 50% 0%, rgba(217, 119, 87, 0.10), transparent 70%);
+  }
 
-        header p {
-            font-size: 1.2rem;
-            animation: fadeInUp 1s ease forwards;
-            animation-delay: 0.5s;
-        }
+  header h1 {
+    font-family: var(--serif);
+    font-size: 2.75rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-wrap: balance;
+  }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #111;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+  header p {
+    color: var(--clay);
+    font-size: 0.9375rem;
+    letter-spacing: 0.12em;
+    text-indent: 0.12em;
+  }
 
-        nav a {
-            padding: 15px 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-            color: #eee;
-            transition: 0.3s;
-        }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 28px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(21, 21, 21, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 10;
+  }
 
-        nav a:hover {
-            background-color: #1e1e1e;
-        }
+  nav a { font-size: 0.875rem; color: var(--text-muted); }
+  nav a:hover { color: var(--sky); text-decoration: none; }
 
-        section {
-            max-width: 1000px;
-            margin: 60px auto;
-            padding: 30px;
-            background-color: #1a1a1a;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 64px;
+  }
 
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+  .js section {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
 
-        h2 {
-            text-align: center;
-            color: #1e90ff;
-            margin-bottom: 20px;
-        }
+  .js section.visible { opacity: 1; transform: none; }
 
-        ul li {
-            margin: 10px 0;
-        }
+  section:last-child { border-bottom: none; }
 
-        .contact p, .contact ul {
-            text-align: center;
-        }
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.375rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
 
-        footer {
-            background-color: #111;
-            color: #888;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-        }
+  h2::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 15px;
+    border-radius: 2px;
+    margin-right: 11px;
+    vertical-align: -1px;
+  }
 
-        button {
-            background-color: #1e90ff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+  #about h2 { color: var(--clay); }
+  #about h2::before { background: var(--clay); }
+  #word h2 { color: var(--gold); }
+  #word h2::before { background: var(--gold); }
+  #projects h2 { color: var(--mint); }
+  #projects h2::before { background: var(--mint); }
+  #contact h2 { color: var(--lilac); }
+  #contact h2::before { background: var(--lilac); }
 
-        button:hover {
-            background-color: #00ffff;
-        }
+  section p { color: var(--text-secondary); margin-bottom: 10px; font-size: 0.9375rem; }
 
-        button:disabled {
-            background-color: gray;
-            cursor: not-allowed;
-        }
+  #about p:first-of-type { color: var(--text-primary); }
 
-        button:disabled:hover {
-            background-color: gray;
-        }
+  #word a { color: var(--gold); }
+  #word a:hover { color: #f0cf8c; }
 
-        @keyframes fadeInDown {
-            0% { opacity: 0; transform: translateY(-50px);}
-            100% { opacity: 1; transform: translateY(0);}
-        }
+  #links { display: flex; flex-wrap: wrap; gap: 10px; }
 
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(50px);}
-            100% { opacity: 1; transform: translateY(0);}
-        }
+  #links a,
+  #links .link-disabled {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding: 9px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface-3);
+    color: var(--text-secondary);
+    transition: border-color .18s ease, color .18s ease, background .18s ease, transform .18s ease;
+  }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.2rem; }
-            nav { flex-direction: column; }
-            nav a { padding: 12px; }
-        }
-    </style>
+  #links a:hover {
+    border-color: rgba(127, 196, 163, 0.55);
+    color: var(--mint);
+    background: rgba(127, 196, 163, 0.08);
+    text-decoration: none;
+  }
+
+  #links a:active { transform: scale(0.98); }
+
+  #links .link-disabled { opacity: .32; cursor: default; }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 9px;
+    font-size: 0.9375rem;
+  }
+
+  .contact-row > span {
+    color: var(--lilac);
+    min-width: 44px;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+  }
+
+  .contact-row a { color: var(--text-primary); }
+  .contact-row a:hover { color: var(--sky-hover); }
+
+  .copy-btn {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    line-height: 1;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface-3);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color .18s ease, color .18s ease, background .18s ease;
+  }
+
+  .copy-btn:hover {
+    border-color: rgba(168, 148, 212, 0.55);
+    color: var(--lilac);
+    background: rgba(168, 148, 212, 0.08);
+  }
+
+  .copy-btn:active { transform: scale(0.96); }
+
+  .copy-btn.done {
+    border-color: rgba(127, 196, 163, 0.55);
+    color: var(--mint);
+    background: rgba(127, 196, 163, 0.08);
+  }
+
+  footer {
+    padding: 44px 24px 60px;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+
+  footer span { color: var(--clay); }
+
+  @media (max-width: 600px) {
+    header { padding: 64px 24px 48px; }
+    header h1 { font-size: 2.125rem; }
+    nav { gap: 10px 20px; }
+    section { padding: 44px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      transition-duration: .01ms !important;
+      animation-duration: .01ms !important;
+    }
+    .js section { opacity: 1; transform: none; }
+  }
+</style>
 </head>
 <body>
 
 <header>
-    <h1>esahhk</h1>
-    <p>空间</p>
+  <h1>esahhk</h1>
+  <p>空间</p>
 </header>
 
 <nav>
-    <a href="#about">关于</a>
-    <a href="#projects">子链接</a>
-    <a href="#contact">联系</a>
+  <a href="#about">关于</a>
+  <a href="#word">没什么用处</a>
+  <a href="#projects">子链接</a>
+  <a href="#contact">联系</a>
 </nav>
 
-<section id="about">
+<main class="wrap">
+
+  <section id="about">
     <h2>关于</h2>
-    <p style="text-align: center;">by esahhk</p>
-    <p style="text-align: center;">🎵✋wonderhoi✋🎵</p>
-</section>
+    <p>by esahhk</p>
+    <p>🎵✋ wonderhoi ✋🎵</p>
+  </section>
 
-<section id="word">
+  <section id="word">
     <h2>没什么用处</h2>
-    <p style="text-align: center;">点击此处输入文本</p>
-    <p style="text-align: center;">🎵</p>
-    <p style="text-align: center;">
-    <a href="https://by.esahhk.xyz" target="_blank" style="color: inherit; text-decoration: none; cursor: pointer;">
-    点击此处跳转属性
-    </a>
-    </p>
-    <p style="text-align: center;">早上好👍</p>
-    <p style="text-align: center;">写这段文案时候是星期四所以请v我50kfc😋</p>
-</section>
+    <p>点击此处输入文本</p>
+    <p><a href="https://by.esahhk.xyz" target="_blank" rel="noopener">点击此处跳转属性</a></p>
+    <p>早上好 👍</p>
+    <p>写这段文案时候是星期四所以请 v 我 50 kfc 😋</p>
+  </section>
 
-<section id="projects">
+  <section id="projects">
     <h2>子链接</h2>
-    <div id="link-container" style="text-align:center;"></div>
-</section>
+    <div id="links">
+      <a href="https://world.esahhk.xyz" target="_blank" rel="noopener">前往世界版本</a>
+      <a href="https://word.esahhk.xyz" target="_blank" rel="noopener">文本</a>
+      <a href="https://star.esahhk.xyz" target="_blank" rel="noopener">收藏</a>
+      <a href="https://main.esahhk.xyz" target="_blank" rel="noopener">前往 Main</a>
+      <a href="https://play.esahhk.xyz" target="_blank" rel="noopener">小游戏</a>
+      <a href="https://bili.esahhk.xyz" target="_blank" rel="noopener">收藏夹</a>
+      <a href="https://dssc.esahhk.xyz" target="_blank" rel="noopener">ds 搜索页</a>
+      <a href="https://xcar.esahhk.xyz" target="_blank" rel="noopener">能猫骑车</a>
+      <a href="https://cltr.esahhk.xyz" target="_blank" rel="noopener">Claude 同人文（？</a>
+      <span class="link-disabled" aria-disabled="true">test</span>
+    </div>
+  </section>
 
-<section id="contact">
+  <section id="contact">
     <h2>联系</h2>
-    <p>邮箱: <a href="mailto:esahhk@outlook.com">esahhk@outlook.com</a></p>
-    <p>QQ: <a href="mailto:639554885@qq.com">639554885@qq.com</a></p>
-    <button onclick="window.open('https://space.bilibili.com/2058030122/','_blank')">b站</button>
-</section>
+    <div class="contact-row">
+      <span>邮箱</span>
+      <a href="mailto:esahhk@outlook.com">esahhk@outlook.com</a>
+    </div>
+    <div class="contact-row">
+      <span>QQ</span>
+      <a href="mailto:639554885@qq.com">639554885@qq.com</a>
+      <button type="button" class="copy-btn" data-copy="639554885" aria-label="复制 QQ 号">复制</button>
+    </div>
+    <div class="contact-row">
+      <span>B站</span>
+      <a href="https://space.bilibili.com/2058030122/" target="_blank" rel="noopener">space.bilibili.com</a>
+    </div>
+  </section>
 
-<footer>
-    2026 by esahhk
-</footer>
+</main>
+
+<footer><span id="year">2026</span> by <span>esahhk</span></footer>
 
 <script>
-    const linkList = [
-        { text: '前往世界版本',      url: 'https://world.esahhk.xyz' },
-        { text: '文本',              url: 'https://word.esahhk.xyz' },
-        { text: '收藏',              url: 'https://star.esahhk.xyz' },
-        { text: '前往Main',          url: 'https://main.esahhk.xyz' },
-        { text: '小游戏',            url: 'https://play.esahhk.xyz' },
-        { text: '收藏夹',            url: 'https://bili.esahhk.xyz' },
-        { text: 'ds搜索页',          url: 'https://dssc.esahhk.xyz' },
-        { text: '能猫骑车',          url: 'https://xcar.esahhk.xyz' },
-        { text: 'Claude同人文（？',  url: 'https://cltr.esahhk.xyz' },
-        { text: 'test',              url: null, disabled: true }
-    ];
+  document.documentElement.classList.add('js');
 
-    function renderLinks() {
-        const container = document.getElementById('link-container');
-        container.innerHTML = '';
+  /* 年份 */
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-        linkList.forEach(item => {
-            const btn = document.createElement('button');
-            btn.textContent = item.text;
-
-            if (item.disabled || !item.url) {
-                btn.disabled = true;
-            } else {
-                btn.addEventListener('click', () => {
-                    window.open(item.url, '_blank');
-                });
-            }
-
-            container.appendChild(btn);
-        });
-    }
-
-    renderLinks();
-
-    const sections = document.querySelectorAll('section');
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    sections.forEach(section => {
-        observer.observe(section);
+  /* 滚动渐入 */
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
     });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('section').forEach(function (s) { io.observe(s); });
+
+  /* 复制 */
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    let timer = null;
+
+    btn.addEventListener('click', async function () {
+      const text = btn.dataset.copy;
+      let ok = false;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          ok = true;
+        } catch (e) {
+          ok = fallbackCopy(text);
+        }
+      } else {
+        ok = fallbackCopy(text);
+      }
+
+      btn.textContent = ok ? '已复制' : '复制失败';
+      btn.classList.toggle('done', ok);
+
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        btn.textContent = '复制';
+        btn.classList.remove('done');
+      }, 1600);
+    });
+  });
 </script>
 
 </body>
