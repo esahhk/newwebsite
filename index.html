@@ -74,6 +74,7 @@
     text-align: center;
     border-bottom: 1px solid var(--border);
     background: radial-gradient(ellipse 80% 120% at 50% 0%, rgba(217, 119, 87, 0.10), transparent 70%);
+    position: relative;
   }
 
   header h1 {
@@ -90,6 +91,39 @@
     font-size: 0.9375rem;
     letter-spacing: 0.12em;
     text-indent: 0.12em;
+  }
+
+  .lang-switch {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    height: 32px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface-3);
+    color: var(--text-secondary);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: border-color .18s ease, color .18s ease, background .18s ease, transform .12s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .lang-switch:hover {
+    border-color: rgba(110, 168, 216, 0.55);
+    color: var(--sky);
+    background: rgba(110, 168, 216, 0.08);
+  }
+
+  .lang-switch:active { transform: scale(0.96); }
+
+  .lang-switch:focus-visible {
+    outline: 2px solid rgba(110, 168, 216, 0.7);
+    outline-offset: 3px;
   }
 
   nav {
@@ -219,7 +253,7 @@
     color: var(--text-muted);
     cursor: pointer;
     flex-shrink: 0;
-    transition: border-color .18s ease, color .18s ease, background .18s ease;
+    transition: border-color .18s ease, color .18s ease, background .18s ease, transform .12s ease;
   }
 
   .copy-btn:hover {
@@ -706,6 +740,7 @@
     nav { gap: 10px 20px; padding: 14px 20px; }
     section { padding: 44px 0; }
     .wrap { padding: 0 20px; }
+    .lang-switch { top: 14px; right: 14px; height: 30px; padding: 0 12px; font-size: 0.7rem; }
     .music-panel { max-height: 86vh; }
     .music-panel-inner { padding: 0 16px; }
     .music-controls { gap: 8px; }
@@ -722,6 +757,7 @@
 
   @media (max-width: 380px) {
     .wrap { padding: 0 16px; }
+    .lang-switch { top: 12px; right: 12px; height: 28px; padding: 0 10px; font-size: 0.68rem; }
     .music-panel-inner { padding: 0 12px; }
     .music-controls { gap: 6px; }
     .music-btn { width: 36px; height: 36px; }
@@ -765,62 +801,63 @@
 <body>
 
 <header>
+  <button class="lang-switch" id="langSwitch" type="button" aria-label="Switch to English">EN</button>
   <h1>esahhk</h1>
-  <p>空间</p>
+  <p data-i18n="header.tagline">空间</p>
 </header>
 
 <nav aria-label="主导航">
-  <a href="#about">关于</a>
-  <a href="#word">没什么用处</a>
-  <a href="#projects">子链接</a>
-  <a href="#contact">联系</a>
+  <a href="#about" data-i18n="nav.about">关于</a>
+  <a href="#word" data-i18n="nav.misc">没什么用处</a>
+  <a href="#projects" data-i18n="nav.links">子链接</a>
+  <a href="#contact" data-i18n="nav.contact">联系</a>
 </nav>
 
 <main class="wrap">
 
   <section id="about">
-    <h2>关于</h2>
+    <h2 data-i18n="section.about">关于</h2>
     <p>by esahhk</p>
     <p>🎵✋ wonderhoi ✋🎵</p>
   </section>
 
   <section id="word">
-    <h2>没什么用处</h2>
-    <p>点击此处输入文本</p>
-    <p><a href="https://by.esahhk.xyz" target="_blank" rel="noopener">点击此处跳转属性</a></p>
-    <p>早上好 👍</p>
-    <p>写这段文案时候是星期四所以请 v 我 50 kfc 😋</p>
+    <h2 data-i18n="section.misc">没什么用处</h2>
+    <p data-i18n="misc.text1">点击此处输入文本</p>
+    <p><a href="https://by.esahhk.xyz" target="_blank" rel="noopener" data-i18n="misc.text2">点击此处跳转属性</a></p>
+    <p data-i18n="misc.text3">早上好 👍</p>
+    <p data-i18n="misc.text4">写这段文案时候是星期四所以请 v 我 50 kfc 😋</p>
   </section>
 
   <section id="projects">
-    <h2>子链接</h2>
+    <h2 data-i18n="section.links">子链接</h2>
     <div id="links">
-      <a href="https://ged.esahhk.xyz" target="_blank" rel="noopener">世界版本</a>
-      <a href="https://word.esahhk.xyz" target="_blank" rel="noopener">文本</a>
-      <a href="https://star.esahhk.xyz" target="_blank" rel="noopener">收藏</a>
-      <a href="https://main.esahhk.xyz" target="_blank" rel="noopener">前往 Main</a>
-      <a href="https://play.esahhk.xyz" target="_blank" rel="noopener">小游戏</a>
-      <a href="https://bili.esahhk.xyz" target="_blank" rel="noopener">收藏夹</a>
-      <a href="https://dssc.esahhk.xyz" target="_blank" rel="noopener">ds 搜索页</a>
-      <a href="https://xcar.esahhk.xyz" target="_blank" rel="noopener">能猫骑车</a>
-      <a href="https://cltry.esahhk.xyz" target="_blank" rel="noopener">Claude 同人文（？</a>
+      <a href="https://ged.esahhk.xyz" target="_blank" rel="noopener" data-i18n="links.world">世界版本</a>
+      <a href="https://word.esahhk.xyz" target="_blank" rel="noopener" data-i18n="links.word">文本</a>
+      <a href="https://star.esahhk.xyz" target="_blank" rel="noopener" data-i18n="links.star">收藏</a>
+      <a href="https://main.esahhk.xyz" target="_blank" rel="noopener" data-i18n="links.main">前往 Main</a>
+      <a href="https://play.esahhk.xyz" target="_blank" rel="noopener" data-i18n="links.play">小游戏</a>
+      <a href="https://bili.esahhk.xyz" target="_blank" rel="noopener" data-i18n="links.bili">收藏夹</a>
+      <a href="https://dssc.esahhk.xyz" target="_blank" rel="noopener" data-i18n="links.dssc">ds 搜索页</a>
+      <a href="https://xcar.esahhk.xyz" target="_blank" rel="noopener" data-i18n="links.xcar">能猫骑车</a>
+      <a href="https://cltry.esahhk.xyz" target="_blank" rel="noopener" data-i18n="links.cltry">Claude 同人文（？</a>
       <span class="link-disabled" aria-disabled="true">test</span>
     </div>
   </section>
 
   <section id="contact">
-    <h2>联系</h2>
+    <h2 data-i18n="section.contact">联系</h2>
     <div class="contact-row">
-      <span>邮箱</span>
+      <span data-i18n="contact.email">邮箱</span>
       <a href="mailto:esahhk@outlook.com">esahhk@outlook.com</a>
     </div>
     <div class="contact-row">
       <span>QQ</span>
       <a href="mailto:639554885@qq.com">639554885@qq.com</a>
-      <button type="button" class="copy-btn" data-copy="639554885" aria-label="复制 QQ 号">复制</button>
+      <button type="button" class="copy-btn" data-copy="639554885" aria-label="复制 QQ 号" data-i18n="contact.copy">复制</button>
     </div>
     <div class="contact-row">
-      <span>B站</span>
+      <span data-i18n="contact.bili">B站</span>
       <a href="https://space.bilibili.com/2058030122/" target="_blank" rel="noopener">space.bilibili.com</a>
     </div>
   </section>
@@ -829,7 +866,7 @@
 
 <footer><span id="year">2026</span> by <span>esahhk</span></footer>
 
-<button class="music-fab" id="musicFab" type="button" aria-label="打开音乐面板" aria-controls="musicPanel" aria-expanded="false" title="音乐">
+<button class="music-fab" id="musicFab" type="button" aria-label="打开音乐面板" aria-controls="musicPanel" aria-expanded="false" title="音乐" data-i18n-aria-label="music.fab.label" data-i18n-title="music.fab.title">
   <svg class="music-disc" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
     <defs>
       <radialGradient id="musicDiscGloss" cx="36%" cy="30%" r="78%">
@@ -853,17 +890,17 @@
   </svg>
 </button>
 
-<div class="music-panel" id="musicPanel" role="dialog" aria-label="音乐播放器" aria-modal="false">
+<div class="music-panel" id="musicPanel" role="dialog" aria-label="音乐播放器" aria-modal="false" data-i18n-aria-label="music.panel.label">
   <div class="music-panel-inner">
     <div class="music-panel-handle"></div>
 
     <div class="music-panel-top">
       <span class="music-panel-label">Music</span>
-      <button class="music-close" id="musicClose" type="button" aria-label="关闭音乐面板">&times;</button>
+      <button class="music-close" id="musicClose" type="button" aria-label="关闭音乐面板" data-i18n-aria-label="music.close">&times;</button>
     </div>
 
     <div class="music-now">
-      <div class="music-title" id="musicTitle">未选择曲目</div>
+      <div class="music-title" id="musicTitle"></div>
       <div class="music-artist" id="musicArtist">—</div>
     </div>
 
@@ -871,6 +908,7 @@
       <div class="music-progress-track" id="musicProgress"
            role="slider" tabindex="0"
            aria-label="播放进度"
+           data-i18n-aria-label="music.aria.progress"
            aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
            aria-valuetext="0:00 / 0:00">
         <div class="music-progress-fill" id="musicFill"></div>
@@ -883,26 +921,26 @@
     </div>
 
     <div class="music-controls">
-      <button class="music-btn mode-btn" id="musicShuffle" type="button" aria-label="随机播放" title="随机播放">
+      <button class="music-btn mode-btn" id="musicShuffle" type="button" aria-label="随机播放" title="随机播放" data-i18n-aria-label="music.aria.shuffle" data-i18n-title="music.aria.shuffle">
         <svg viewBox="0 0 24 24"><path d="M10.59 9.17 5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
       </button>
-      <button class="music-btn" id="musicPrev" type="button" aria-label="上一首">
+      <button class="music-btn" id="musicPrev" type="button" aria-label="上一首" data-i18n-aria-label="music.aria.prev">
         <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
       </button>
-      <button class="music-btn play-main" id="musicPlay" type="button" aria-label="播放">
+      <button class="music-btn play-main" id="musicPlay" type="button" aria-label="播放" data-i18n-aria-label="music.aria.play">
         <svg id="musicPlayIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </button>
-      <button class="music-btn" id="musicNext" type="button" aria-label="下一首">
+      <button class="music-btn" id="musicNext" type="button" aria-label="下一首" data-i18n-aria-label="music.aria.next">
         <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
       </button>
-      <button class="music-btn mode-btn" id="musicLoop" type="button" aria-label="循环模式：不循环" title="循环模式">
+      <button class="music-btn mode-btn" id="musicLoop" type="button" aria-label="循环模式：不循环" title="不循环" data-i18n-aria-label="music.aria.loop0" data-i18n-title="music.loop0.title">
         <svg id="musicLoopIcon" viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
       </button>
     </div>
 
     <div class="music-extra" id="musicExtra">
       <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-      <input type="range" class="music-volume" id="musicVolume" min="0" max="1" step="0.01" value="0.8" aria-label="音量">
+      <input type="range" class="music-volume" id="musicVolume" min="0" max="1" step="0.01" value="0.8" aria-label="音量" data-i18n-aria-label="music.aria.volume">
     </div>
 
     <div class="music-error" id="musicError" role="alert" aria-atomic="true"></div>
@@ -910,7 +948,7 @@
 
     <div class="music-list" id="musicList"></div>
 
-    <div class="music-copyright">
+    <div class="music-copyright" data-i18n="music.copyright">
       音乐仅供个人欣赏与非商业用途。所有音乐作品及相关版权均归 SEGA 或及其各自权利人所有。不主张拥有任何音乐作品的版权。
     </div>
   </div>
@@ -964,6 +1002,212 @@
     return ok;
   }
 
+  const I18N = {
+    zh: {
+      'html.lang': 'zh-CN',
+      'page.title': 'esahhk',
+      'header.tagline': '空间',
+      'nav.about': '关于',
+      'nav.misc': '没什么用处',
+      'nav.links': '子链接',
+      'nav.contact': '联系',
+      'section.about': '关于',
+      'section.misc': '没什么用处',
+      'section.links': '子链接',
+      'section.contact': '联系',
+      'misc.text1': '点击此处输入文本',
+      'misc.text2': '点击此处跳转属性',
+      'misc.text3': '早上好 👍',
+      'misc.text4': '写这段文案时候是星期四所以请 v 我 50 kfc 😋',
+      'links.world': '世界版本',
+      'links.word': '文本',
+      'links.star': '收藏',
+      'links.main': '前往 Main',
+      'links.play': '小游戏',
+      'links.bili': '收藏夹',
+      'links.dssc': 'ds 搜索页',
+      'links.xcar': '能猫骑车',
+      'links.cltry': 'Claude 同人文（？',
+      'contact.email': '邮箱',
+      'contact.qq': 'QQ',
+      'contact.bili': 'B站',
+      'contact.copy': '复制',
+      'contact.copyDone': '已复制',
+      'contact.copyFail': '复制失败',
+      'lang.switchToEn': 'Switch to English',
+      'lang.switchToZh': '切换到中文',
+      'music.fab.title': '音乐',
+      'music.fab.label': '打开音乐面板',
+      'music.panel.label': '音乐播放器',
+      'music.close': '关闭音乐面板',
+      'music.now.title': '未选择曲目',
+      'music.now.artist': '—',
+      'music.noTracks': '暂无曲目',
+      'music.emptyList': '未找到曲目列表。',
+      'music.unknownTrack': '未知曲目',
+      'music.aria.play': '播放',
+      'music.aria.pause': '暂停',
+      'music.aria.prev': '上一首',
+      'music.aria.next': '下一首',
+      'music.aria.shuffle': '随机播放',
+      'music.aria.shuffleOn': '随机播放：开',
+      'music.aria.shuffleOff': '随机播放：关',
+      'music.aria.loop0': '循环模式：不循环',
+      'music.aria.loop1': '循环模式：列表循环',
+      'music.aria.loop2': '循环模式：单曲循环',
+      'music.loop0.title': '不循环',
+      'music.loop1.title': '列表循环',
+      'music.loop2.title': '单曲循环',
+      'music.aria.volume': '音量',
+      'music.aria.progress': '播放进度',
+      'music.copyright': '音乐仅供个人欣赏与非商业用途。所有音乐作品及相关版权均归 SEGA 或及其各自权利人所有。不主张拥有任何音乐作品的版权。',
+      'music.err.gesture': '需要用户手势才能播放，请再点一次播放按钮。',
+      'music.err.play': '播放失败：',
+      'music.err.network': '网络错误，无法加载音频。',
+      'music.err.decode': '音频解码失败，文件可能损坏。',
+      'music.err.format': '音频格式不支持，或服务器未正确响应 Range 请求。',
+      'music.err.generic': '播放失败',
+      'music.status.stalled': '加载缓慢，正在等待数据…',
+      'music.status.waiting': '加载中…'
+    },
+    en: {
+      'html.lang': 'en',
+      'page.title': 'esahhk',
+      'header.tagline': 'Space',
+      'nav.about': 'About',
+      'nav.misc': 'Misc',
+      'nav.links': 'Links',
+      'nav.contact': 'Contact',
+      'section.about': 'About',
+      'section.misc': 'Misc',
+      'section.links': 'Links',
+      'section.contact': 'Contact',
+      'misc.text1': 'Click here to enter text',
+      'misc.text2': 'Click here to open properties',
+      'misc.text3': 'Good morning 👍',
+      'misc.text4': 'It was Thursday when I wrote this, so please Venmo me 50 KFC 😋',
+      'links.world': 'World Version',
+      'links.word': 'Text',
+      'links.star': 'Favorites',
+      'links.main': 'Go to Main',
+      'links.play': 'Mini Games',
+      'links.bili': 'Bookmarks',
+      'links.dssc': 'ds Search',
+      'links.xcar': 'Panda Cycling',
+      'links.cltry': 'Claude Fanfic (?',
+      'contact.email': 'Email',
+      'contact.qq': 'QQ',
+      'contact.bili': 'Bilibili',
+      'contact.copy': 'Copy',
+      'contact.copyDone': 'Copied',
+      'contact.copyFail': 'Failed',
+      'lang.switchToEn': 'Switch to English',
+      'lang.switchToZh': '切换到中文',
+      'music.fab.title': 'Music',
+      'music.fab.label': 'Open music panel',
+      'music.panel.label': 'Music player',
+      'music.close': 'Close music panel',
+      'music.now.title': 'No track selected',
+      'music.now.artist': '—',
+      'music.noTracks': 'No tracks',
+      'music.emptyList': 'No track list found.',
+      'music.unknownTrack': 'Unknown track',
+      'music.aria.play': 'Play',
+      'music.aria.pause': 'Pause',
+      'music.aria.prev': 'Previous track',
+      'music.aria.next': 'Next track',
+      'music.aria.shuffle': 'Shuffle',
+      'music.aria.shuffleOn': 'Shuffle: on',
+      'music.aria.shuffleOff': 'Shuffle: off',
+      'music.aria.loop0': 'Repeat mode: off',
+      'music.aria.loop1': 'Repeat mode: all',
+      'music.aria.loop2': 'Repeat mode: one',
+      'music.loop0.title': 'No repeat',
+      'music.loop1.title': 'Repeat all',
+      'music.loop2.title': 'Repeat one',
+      'music.aria.volume': 'Volume',
+      'music.aria.progress': 'Playback progress',
+      'music.copyright': 'Music is for personal listening and non-commercial use only. All music works and related copyrights belong to SEGA and their respective rights holders. No copyright is claimed over any music work.',
+      'music.err.gesture': 'User gesture required to play. Please tap play again.',
+      'music.err.play': 'Playback failed: ',
+      'music.err.network': 'Network error, unable to load audio.',
+      'music.err.decode': 'Audio decoding failed, file may be corrupted.',
+      'music.err.format': 'Audio format not supported, or server does not respond to Range requests properly.',
+      'music.err.generic': 'Playback failed',
+      'music.status.stalled': 'Loading slowly, waiting for data…',
+      'music.status.waiting': 'Loading…'
+    }
+  };
+
+  const LANG_KEY = 'esahhk-lang';
+  let currentLang = 'zh';
+
+  function t(key) {
+    const dict = I18N[currentLang] || I18N.zh;
+    return dict[key] != null ? dict[key] : key;
+  }
+
+  function applyLang(lang) {
+    if (!I18N[lang]) lang = 'zh';
+    currentLang = lang;
+    const dict = I18N[lang];
+
+    document.documentElement.lang = dict['html.lang'];
+    document.title = dict['page.title'];
+
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] != null) el.textContent = dict[key];
+    });
+
+    document.querySelectorAll('[data-i18n-title]').forEach(function (el) {
+      const key = el.getAttribute('data-i18n-title');
+      if (dict[key] != null) el.setAttribute('title', dict[key]);
+    });
+
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+      const key = el.getAttribute('data-i18n-aria-label');
+      if (dict[key] != null) el.setAttribute('aria-label', dict[key]);
+    });
+
+    const sw = document.getElementById('langSwitch');
+    if (sw) {
+      if (lang === 'zh') {
+        sw.textContent = 'EN';
+        sw.setAttribute('aria-label', dict['lang.switchToEn']);
+      } else {
+        sw.textContent = '中';
+        sw.setAttribute('aria-label', dict['lang.switchToZh']);
+      }
+    }
+
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      if (btn.classList.contains('done')) {
+        btn.textContent = t('contact.copyDone');
+      }
+    });
+
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+
+    document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: lang } }));
+  }
+
+  (function initLang() {
+    let saved = 'zh';
+    try {
+      const v = localStorage.getItem(LANG_KEY);
+      if (v && I18N[v]) saved = v;
+    } catch (e) {}
+    applyLang(saved);
+  })();
+
+  const langSwitchBtn = document.getElementById('langSwitch');
+  if (langSwitchBtn) {
+    langSwitchBtn.addEventListener('click', function () {
+      applyLang(currentLang === 'zh' ? 'en' : 'zh');
+    });
+  }
+
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     let timer = null;
     btn.addEventListener('click', async function () {
@@ -973,11 +1217,11 @@
         try { await navigator.clipboard.writeText(text); ok = true; }
         catch (e) { ok = fallbackCopy(text); }
       } else { ok = fallbackCopy(text); }
-      btn.textContent = ok ? '已复制' : '复制失败';
+      btn.textContent = ok ? t('contact.copyDone') : t('contact.copyFail');
       btn.classList.toggle('done', ok);
       clearTimeout(timer);
       timer = setTimeout(function () {
-        btn.textContent = '复制';
+        btn.textContent = t('contact.copy');
         btn.classList.remove('done');
       }, 1600);
     });
@@ -1082,7 +1326,7 @@
 
   function setPlayIcon(isPlaying) {
     playIcon.innerHTML = '<path d="' + (isPlaying ? ICON_PAUSE : ICON_PLAY) + '"/>';
-    playBtn.setAttribute('aria-label', isPlaying ? '暂停' : '播放');
+    playBtn.setAttribute('aria-label', isPlaying ? t('music.aria.pause') : t('music.aria.play'));
   }
 
   function syncDiscSpin() {
@@ -1104,7 +1348,7 @@
     if (!('mediaSession' in navigator) || typeof MediaMetadata === 'undefined') return;
     try {
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: safeText(track.title) || '未知曲目',
+        title: safeText(track.title) || t('music.unknownTrack'),
         artist: safeText(track.artist) || 'esahhk',
         album: 'esahhk',
         artwork: [
@@ -1192,14 +1436,14 @@
       btn.type = 'button';
       btn.className = 'music-item' + (i === currentIndex ? ' active' : '');
       btn.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
-      const t = safeText(track.title);
-      const a = safeText(track.artist);
-      btn.title = a ? (t + ' — ' + a) : t;
+      const titleText = safeText(track.title);
+      const artistText = safeText(track.artist);
+      btn.title = artistText ? (titleText + ' — ' + artistText) : titleText;
       btn.innerHTML =
         '<span class="music-item-index">' + String(i + 1).padStart(2, '0') + '</span>' +
         '<span class="music-item-text">' +
-          '<span class="music-item-title">' + escapeHtml(t) + '</span>' +
-          '<span class="music-item-artist">' + escapeHtml(a) + '</span>' +
+          '<span class="music-item-title">' + escapeHtml(titleText) + '</span>' +
+          '<span class="music-item-artist">' + escapeHtml(artistText) + '</span>' +
         '</span>';
       btn.addEventListener('click', function () {
         if (i === currentIndex) {
@@ -1316,9 +1560,9 @@
           syncDiscSpin();
           if (silent) return;
           if (err.name === 'NotAllowedError') {
-            showError('需要用户手势才能播放，请再点一次播放按钮。');
+            showError(t('music.err.gesture'));
           } else {
-            showError('播放失败：' + (err.message || err.name));
+            showError(t('music.err.play') + (err.message || err.name));
           }
         });
       }
@@ -1345,7 +1589,7 @@
       if (p && typeof p.catch === 'function') {
         p.catch(function (err) {
           if (err.name === 'AbortError') return;
-          showError('播放失败：' + (err.message || err.name));
+          showError(t('music.err.play') + (err.message || err.name));
         });
       }
     } else {
@@ -1368,21 +1612,38 @@
   function updateLoopUI() {
     loopBtn.classList.toggle('active', loopMode !== 0);
     if (loopMode === 0) {
-      loopBtn.setAttribute('aria-label', '循环模式：不循环');
-      loopBtn.title = '不循环';
+      loopBtn.setAttribute('aria-label', t('music.aria.loop0'));
+      loopBtn.title = t('music.loop0.title');
       loopIcon.innerHTML =
         '<path d="' + LOOP_ALL + '" opacity="0.55"/>' +
         '<path d="M4 4l16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>';
     } else if (loopMode === 1) {
-      loopBtn.setAttribute('aria-label', '循环模式：列表循环');
-      loopBtn.title = '列表循环';
+      loopBtn.setAttribute('aria-label', t('music.aria.loop1'));
+      loopBtn.title = t('music.loop1.title');
       loopIcon.innerHTML = '<path d="' + LOOP_ALL + '"/>';
     } else {
-      loopBtn.setAttribute('aria-label', '循环模式：单曲循环');
-      loopBtn.title = '单曲循环';
+      loopBtn.setAttribute('aria-label', t('music.aria.loop2'));
+      loopBtn.title = t('music.loop2.title');
       loopIcon.innerHTML = '<path d="' + LOOP_ALL + '"/><circle cx="12" cy="12" r="3" fill="currentColor"/>';
     }
   }
+
+  function refreshMusicLabels() {
+    const isPlaying = !audio.paused && !audio.ended;
+    setPlayIcon(isPlaying);
+    updateLoopUI();
+    shuffleBtn.setAttribute('aria-label', t(shuffle ? 'music.aria.shuffleOn' : 'music.aria.shuffleOff'));
+    shuffleBtn.title = t('music.aria.shuffle');
+    if (currentIndex < 0) {
+      titleEl.textContent = t('music.now.title');
+      artistEl.textContent = t('music.now.artist');
+    }
+    if (errorEl.classList.contains('show') || statusEl.classList.contains('show')) {
+      clearError();
+    }
+  }
+
+  document.addEventListener('langchange', refreshMusicLabels);
 
   function setProgressFromRatio(ratio) {
     const r = Math.min(1, Math.max(0, ratio));
@@ -1432,8 +1693,8 @@
     dragging = false;
     progressTrack.classList.remove('dragging');
     if (isFinite(audio.duration) && audio.duration > 0) {
-      const t = Math.round(dragRatio * audio.duration * 10) / 10;
-      audio.currentTime = Math.max(0, Math.min(t, audio.duration - 0.05));
+      const time = Math.round(dragRatio * audio.duration * 10) / 10;
+      audio.currentTime = Math.max(0, Math.min(time, audio.duration - 0.05));
     }
   }
 
@@ -1614,7 +1875,7 @@
   shuffleBtn.addEventListener('click', function () {
     shuffle = !shuffle;
     shuffleBtn.classList.toggle('active', shuffle);
-    shuffleBtn.setAttribute('aria-label', '随机播放' + (shuffle ? '：开' : '：关'));
+    shuffleBtn.setAttribute('aria-label', t(shuffle ? 'music.aria.shuffleOn' : 'music.aria.shuffleOff'));
     if (shuffle) buildShuffleOrder();
   });
 
@@ -1753,10 +2014,10 @@
       return;
     }
 
-    let msg = '播放失败';
-    if (err.code === 2) msg = '网络错误，无法加载音频。';
-    else if (err.code === 3) msg = '音频解码失败，文件可能损坏。';
-    else if (err.code === 4) msg = '音频格式不支持，或服务器未正确响应 Range 请求。';
+    let msg = t('music.err.generic');
+    if (err.code === 2) msg = t('music.err.network');
+    else if (err.code === 3) msg = t('music.err.decode');
+    else if (err.code === 4) msg = t('music.err.format');
 
     showError(msg);
     setPlayIcon(false);
@@ -1764,11 +2025,11 @@
   });
 
   audio.addEventListener('stalled', function () {
-    showStatus('加载缓慢，正在等待数据…');
+    showStatus(t('music.status.stalled'));
   });
 
   audio.addEventListener('waiting', function () {
-    showStatus('加载中…');
+    showStatus(t('music.status.waiting'));
   });
 
   audio.addEventListener('canplay', function () {
@@ -1804,17 +2065,15 @@
   updateLoopUI();
   renderList();
   setupMediaSession();
+  refreshMusicLabels();
 
   if (tracks.length > 0) {
     const startIdx = Math.floor(Math.random() * tracks.length);
-    const p = loadTrack(startIdx, true, false, true);
-    if (p === false) {
-      autoplayBlocked = true;
-    }
+    loadTrack(startIdx, true, false, true);
   } else {
-    titleEl.textContent = '暂无曲目';
+    titleEl.textContent = t('music.noTracks');
     artistEl.textContent = '—';
-    showStatus('未找到曲目列表。');
+    showStatus(t('music.emptyList'));
   }
 })();
 </script>
