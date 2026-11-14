@@ -17,6 +17,16 @@
 <meta property="og:image:alt" content="esahhk">
 <meta name="twitter:card" content="summary_large_image">
 
+<link rel="dns-prefetch" href="//ged.esahhk.xyz">
+<link rel="dns-prefetch" href="//word.esahhk.xyz">
+<link rel="dns-prefetch" href="//star.esahhk.xyz">
+<link rel="dns-prefetch" href="//main.esahhk.xyz">
+<link rel="dns-prefetch" href="//play.esahhk.xyz">
+<link rel="dns-prefetch" href="//bili.esahhk.xyz">
+<link rel="dns-prefetch" href="//dssc.esahhk.xyz">
+<link rel="dns-prefetch" href="//xcar.esahhk.xyz">
+<link rel="dns-prefetch" href="//cltry.esahhk.xyz">
+
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 
@@ -785,7 +795,7 @@
   <section id="projects">
     <h2>子链接</h2>
     <div id="links">
-      <a href="https://world.esahhk.xyz" target="_blank" rel="noopener">前往世界版本</a>
+      <a href="https://ged.esahhk.xyz" target="_blank" rel="noopener">世界版本</a>
       <a href="https://word.esahhk.xyz" target="_blank" rel="noopener">文本</a>
       <a href="https://star.esahhk.xyz" target="_blank" rel="noopener">收藏</a>
       <a href="https://main.esahhk.xyz" target="_blank" rel="noopener">前往 Main</a>
@@ -908,7 +918,7 @@
 
 <audio id="musicAudio" preload="none"></audio>
 
-<script src="/music/config.js"></script>
+<script src="/music/config.js" onerror="window.MUSIC_TRACKS=[]"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1090,6 +1100,60 @@
     return v == null ? '' : String(v);
   }
 
+  function updateMediaSession(track) {
+    if (!('mediaSession' in navigator) || typeof MediaMetadata === 'undefined') return;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: safeText(track.title) || '未知曲目',
+        artist: safeText(track.artist) || 'esahhk',
+        album: 'esahhk',
+        artwork: [
+          { src: '/favicon.png', sizes: '512x512', type: 'image/png' }
+        ]
+      });
+    } catch (e) {}
+  }
+
+  function syncMediaSessionState() {
+    if (!('mediaSession' in navigator)) return;
+    try {
+      navigator.mediaSession.playbackState =
+        (audio.paused || audio.ended) ? 'paused' : 'playing';
+    } catch (e) {}
+  }
+
+  function setupMediaSession() {
+    if (!('mediaSession' in navigator)) return;
+    const ms = navigator.mediaSession;
+    const safeSet = function (action, handler) {
+      try { ms.setActionHandler(action, handler); } catch (e) {}
+    };
+
+    safeSet('play', function () {
+      const p = audio.play();
+      if (p && p.catch) p.catch(function () {});
+    });
+    safeSet('pause', function () { audio.pause(); });
+    safeSet('previoustrack', goPrev);
+    safeSet('nexttrack', goNext);
+
+    safeSet('seekto', function (d) {
+      if (!d || d.seekTime == null) return;
+      if (!isFinite(audio.duration) || audio.duration <= 0) return;
+      audio.currentTime = Math.max(0, Math.min(d.seekTime, audio.duration - 0.05));
+    });
+    safeSet('seekbackward', function (d) {
+      if (!isFinite(audio.duration) || audio.duration <= 0) return;
+      const offset = (d && d.seekOffset) || 10;
+      audio.currentTime = Math.max(0, audio.currentTime - offset);
+    });
+    safeSet('seekforward', function (d) {
+      if (!isFinite(audio.duration) || audio.duration <= 0) return;
+      const offset = (d && d.seekOffset) || 10;
+      audio.currentTime = Math.min(audio.duration - 0.05, audio.currentTime + offset);
+    });
+  }
+
   function trackKey(track) {
     if (!track) return null;
     return track.id != null && track.id !== '' ? 'id:' + track.id : 'src:' + track.src;
@@ -1220,6 +1284,7 @@
     titleEl.textContent = safeText(track.title);
     titleEl.title = safeText(track.title);
     artistEl.textContent = safeText(track.artist);
+    updateMediaSession(track);
     clearError();
     preloadedIndex = -1;
 
@@ -1604,12 +1669,14 @@
     setPlayIcon(true);
     clearError();
     syncDiscSpin();
+    syncMediaSessionState();
   });
 
   audio.addEventListener('pause', function () {
     setPlayIcon(false);
     saveCurrentProgress();
     syncDiscSpin();
+    syncMediaSessionState();
   });
 
   audio.addEventListener('loadedmetadata', function () {
@@ -1642,6 +1709,7 @@
   });
 
   audio.addEventListener('ended', function () {
+    syncMediaSessionState();
     if (tracks.length === 0) { setPlayIcon(false); syncDiscSpin(); return; }
 
     if (loopMode === 2) {
@@ -1735,6 +1803,7 @@
 
   updateLoopUI();
   renderList();
+  setupMediaSession();
 
   if (tracks.length > 0) {
     const startIdx = Math.floor(Math.random() * tracks.length);
