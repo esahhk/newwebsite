@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#151515">
+<title>404 - esahhk</title>
+<meta name="robots" content="noindex">
+
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+
+<style>
+  :root {
+    color-scheme: dark;
+    --surface-1: #151515;
+    --surface-3: #20201f;
+    --sky: #6ea8d8;
+    --sky-hover: #8fc0e8;
+    --text-primary: #f2f0e8;
+    --text-secondary: #b8b6ac;
+    --text-muted: #8f8e85;
+    --border: hsla(0, 0%, 100%, 0.09);
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Songti SC", "Noto Serif SC", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--surface-1);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .lang-switch {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    height: 32px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface-3);
+    color: var(--text-secondary);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: border-color .18s ease, color .18s ease, background .18s ease, transform .12s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .lang-switch:hover {
+    border-color: rgba(110, 168, 216, 0.55);
+    color: var(--sky);
+    background: rgba(110, 168, 216, 0.08);
+  }
+
+  .lang-switch:active { transform: scale(0.96); }
+
+  .lang-switch:focus-visible {
+    outline: 2px solid rgba(110, 168, 216, 0.7);
+    outline-offset: 3px;
+  }
+
+  .code {
+    font-family: var(--serif);
+    font-size: 6rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--text-primary);
+    letter-spacing: -0.04em;
+    margin-bottom: 8px;
+  }
+
+  .message {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 360px;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface-3);
+    color: var(--text-secondary);
+    font-family: var(--sans);
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: border-color .18s ease, color .18s ease, background .18s ease, transform .12s ease;
+  }
+
+  .back-btn:hover {
+    border-color: rgba(110, 168, 216, 0.55);
+    color: var(--sky);
+    background: rgba(110, 168, 216, 0.08);
+    text-decoration: none;
+  }
+
+  .back-btn:active { transform: scale(0.97); }
+
+  .back-btn:focus-visible {
+    outline: 2px solid rgba(110, 168, 216, 0.7);
+    outline-offset: 3px;
+  }
+
+  .back-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 600px) {
+    .code { font-size: 4.5rem; }
+    .message { font-size: 1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: .01ms !important;
+    }
+  }
+</style>
+
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<button class="lang-switch" id="langSwitch" type="button" aria-label="Switch to English">EN</button>
+
+<main>
+  <div class="code" id="code">404</div>
+  <p class="message" id="message">页面不存在</p>
+  <a href="/" class="back-btn" id="backBtn">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    <span id="backText">返回主页</span>
+  </a>
+</main>
+
+<script>
+  const I18N = {
+    zh: {
+      'page.title': '404 - esahhk',
+      'message': '页面不存在',
+      'back': '返回主页',
+      'lang.label': 'Switch to English'
+    },
+    en: {
+      'page.title': '404 - esahhk',
+      'message': 'Page not found',
+      'back': 'Back to Home',
+      'lang.label': '切换到中文'
+    }
+  };
+
+  const LANG_KEY = 'esahhk-lang';
+  let currentLang = 'zh';
+
+  function t(key) {
+    const dict = I18N[currentLang] || I18N.zh;
+    return dict[key] != null ? dict[key] : key;
+  }
+
+  function applyLang(lang) {
+    if (!I18N[lang]) lang = 'zh';
+    currentLang = lang;
+    const dict = I18N[lang];
+
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = dict['page.title'];
+    document.getElementById('message').textContent = dict['message'];
+    document.getElementById('backText').textContent = dict['back'];
+
+    const sw = document.getElementById('langSwitch');
+    sw.textContent = lang === 'zh' ? 'EN' : '中';
+    sw.setAttribute('aria-label', dict['lang.label']);
+
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+  }
+
+  (function initLang() {
+    let saved = 'zh';
+    try {
+      const v = localStorage.getItem(LANG_KEY);
+      if (v && I18N[v]) saved = v;
+    } catch (e) {}
+    applyLang(saved);
+  })();
+
+  document.getElementById('langSwitch').addEventListener('click', function () {
+    applyLang(currentLang === 'zh' ? 'en' : 'zh');
+  });
+</script>
+
+</body>
+</html>
