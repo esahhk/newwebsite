@@ -1,1 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#151515">
+<title>最新更新 · esahhk</title>
+<link rel="icon" href="/favicon.png">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root {
+  color-scheme: dark;
+  --surface-1: #151515;
+  --surface-2: #1a1a19;
+  --surface-3: #20201f;
+  --clay: #d97757;
+  --clay-hover: #e88e6f;
+  --sky: #6ea8d8;
+  --sky-hover: #8fc0e8;
+  --mint: #7fc4a3;
+  --gold: #e0b45c;
+  --lilac: #a894d4;
+  --text-primary: #f2f0e8;
+  --text-secondary: #b8b6ac;
+  --text-muted: #8f8e85;
+  --border: hsla(0, 0%, 100%, 0.09);
+  --border-strong: hsla(0, 0%, 100%, 0.18);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Songti SC", "Noto Serif SC", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+}
 
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: var(--sky); text-decoration: none; }
+
+header {
+  position: relative;
+  padding: 96px 24px 72px;
+  text-align: center;
+  background: radial-gradient(ellipse 80% 120% at 50% 0%, rgba(217, 119, 87, 0.10), transparent 70%);
+}
+
+header h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 2.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+}
+
+header .subtitle {
+  margin: 14px 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.back-link {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-3);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  transition: border-color .18s ease, color .18s ease, background .18s ease, transform .12s ease;
+}
+
+.back-link:hover {
+  border-color: rgba(110, 168, 216, 0.55);
+  color: var(--sky);
+  background: rgba(110, 168, 216, 0.08);
+  text-decoration: none;
+}
+
+.back-link:active { transform: scale(0.96); }
+
+.header-actions {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.pill-btn {
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-3);
+  color: var(--text-secondary);
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color .18s ease, color .18s ease, background .18s ease, transform .12s ease;
+}
+
+.pill-btn:hover {
+  border-color: rgba(217, 119, 87, 0.55);
+  color: var(--clay);
+  background: rgba(217, 119, 87, 0.08);
+}
+
+.pill-btn:active { transform: scale(0.96); }
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(21, 21, 21, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-inner button {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 14px 0;
+  border: 0;
+  background: none;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: var(--text-muted);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: color .18s ease;
+}
+
+.nav-inner button:hover { color: var(--sky); }
+
+.nav-inner button[aria-selected="true"] { color: var(--text-primary); }
+
+.nav-inner button[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--clay);
+}
+
+.wrap {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+section:last-child { border-bottom: 0; }
+
+h2 {
+  font-family: var(--serif);
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  margin: 0 0 20px;
+  color: var(--clay);
+}
+
+h2::before {
+  content: "";
+  width: 3px;
+  height: 15px;
+  border-radius: 2px;
+  margin-right: 11px;
+  background: var(--clay);
+}
+
+.timeline { position: relative; }
+
+.entry {
+  position: relative;
+  padding: 0 0 26px 18px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--border);
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+.entry:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.entry::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--accent, var(--clay));
+}
+
+.entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 6px;
+}
+
+.entry-meta .sep { opacity: 0.45; }
+
+.entry-meta .cat { color: var(--accent, var(--clay)); opacity: 0.9; }
+
+.entry h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.entry p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+.entry-tip {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.tip-label {
+  display: inline-block;
+  margin-right: 9px;
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  color: var(--accent, var(--clay));
+  opacity: 0.9;
+  vertical-align: 1px;
+}
+
+.empty {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+footer {
+  padding: 48px 24px 64px;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 60;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-3);
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: opacity .18s ease, transform .42s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.js .entry {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.js .entry.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 600px) {
+  header { padding: 64px 20px 48px; }
+  header h1 { font-size: 2.125rem; }
+  .wrap { padding: 0 20px; }
+  .nav-inner { padding: 0 20px; }
+  section { padding: 44px 0; }
+}
+
+@media (max-width: 380px) {
+  .wrap { padding: 0 16px; }
+  .nav-inner { padding: 0 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+  .js section { opacity: 1; transform: none; }
+  .js .entry { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="back-link" data-i18n="back" data-i18n-aria-label="backAria">← 返回</a>
+  <div class="header-actions">
+    <button class="pill-btn" id="shareBtn" type="button" data-i18n="share" data-i18n-aria-label="shareAria">分享</button>
+    <button class="pill-btn" id="langBtn" type="button" data-i18n-aria-label="langAria">EN</button>
+  </div>
+  <h1 data-i18n="title">最新更新</h1>
+  <p class="subtitle" data-i18n="subtitle">ESAHHK</p>
+</header>
+
+<nav aria-label="筛选">
+  <div class="nav-inner" role="tablist">
+    <button type="button" role="tab" data-filter="all" aria-selected="true" data-i18n="navAll">全部</button>
+    <button type="button" role="tab" data-filter="site" aria-selected="false" data-i18n="navSite">站点</button>
+    <button type="button" role="tab" data-filter="music" aria-selected="false" data-i18n="navMusic">音乐</button>
+    <button type="button" role="tab" data-filter="note" aria-selected="false" data-i18n="navNote">随笔</button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="updates">
+    <h2 data-i18n="sectionTitle">更新记录</h2>
+    <div class="timeline" id="timeline"></div>
+  </section>
+</main>
+
+<footer>
+  <span>2026 by esahhk</span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var I18N = {
+    zh: {
+      pageTitle: '最新更新 · esahhk',
+      title: '最新更新',
+      subtitle: 'ESAHHK',
+      back: '← 返回',
+      backAria: '返回主页',
+      share: '分享',
+      shareAria: '分享本页面',
+      langAria: '切换到英文',
+      navAll: '全部',
+      navSite: '站点',
+      navMusic: '音乐',
+      navNote: '随笔',
+      sectionTitle: '更新记录',
+      tipLabel: 'TIP',
+      empty: '这个分类下还没有记录。',
+      copied: '链接已复制',
+      copyFailed: '复制失败，请手动复制地址',
+      cat_site: '站点',
+      cat_music: '音乐',
+      cat_note: '随笔'
+    },
+    en: {
+      pageTitle: "What's new · esahhk",
+      title: "What's new",
+      subtitle: 'ESAHHK',
+      back: '← Back',
+      backAria: 'Back to home',
+      share: 'Share',
+      shareAria: 'Share this page',
+      langAria: 'Switch to Chinese',
+      navAll: 'All',
+      navSite: 'Site',
+      navMusic: 'Music',
+      navNote: 'Notes',
+      sectionTitle: 'Changelog',
+      tipLabel: 'TIP',
+      empty: 'Nothing here yet in this category.',
+      copied: 'Link copied',
+      copyFailed: 'Copy failed, please copy the URL manually',
+      cat_site: 'Site',
+      cat_music: 'Music',
+      cat_note: 'Notes'
+    }
+  };
+
+  var ENTRIES = [
+    {
+      date: '2026-11-14',
+      cat: 'site',
+      title: {
+        zh: 'DNS 预加载、音乐更新、英文模式与更新板块',
+        en: 'DNS prefetch, music update, English mode and the changelog'
+      },
+      body: {
+        zh: '加入 DNS 预加载；更新音乐；新增英文模式；新增「更新」板块。',
+        en: 'Added DNS prefetch, updated the music, added an English mode, and introduced the What’s new section.'
+      },
+      tip: {
+        zh: 'lower 上传了错误的版本。',
+        en: 'The wrong file of lower was uploaded.'
+      }
+    },
+    {
+      date: '2026-11-13',
+      cat: 'music',
+      title: {
+        zh: '调整音乐设置',
+        en: 'Adjusted music settings'
+      },
+      body: {
+        zh: '修改了音乐相关的配置项。',
+        en: 'Changed the music-related configuration.'
+      }
+    },
+    {
+      date: '2026-11-12',
+      cat: 'site',
+      title: {
+        zh: '重构跳转按钮并更换视觉风格',
+        en: 'Rebuilt redirect buttons and adopted the new visual style'
+      },
+      body: {
+        zh: '更改跳转按钮结构；更换为新版视觉风格；新增缩略图；新增音乐播放；随后修复了四次问题。',
+        en: 'Restructured the redirect buttons, moved to the new visual style, added thumbnails, added music playback, and fixed four rounds of issues afterwards.'
+      },
+      tip: {
+        zh: '风格改造由某个神秘橙色 AI 协助完成。',
+        en: 'The restyle was done with help from a mysterious orange AI.'
+      }
+    },
+    {
+      date: '2026-07-23',
+      cat: 'site',
+      title: {
+        zh: '跳转文案更新',
+        en: 'Redirect copy update'
+      },
+      body: {
+        zh: '调整了跳转相关的文案。',
+        en: 'Adjusted the copy related to redirects.'
+      },
+      tip: {
+        zh: '这次更新有点莫名其妙。',
+        en: 'This one was a little inexplicable.'
+      }
+    },
+    {
+      date: '2026-06-19',
+      cat: 'site',
+      title: {
+        zh: 'wonderhoi! 文案与 B 站链接',
+        en: 'wonderhoi! Copy fixes and a Bilibili link'
+      },
+      body: {
+        zh: '修复部分文案；补充部分文案；新增 B 站链接。',
+        en: 'Fixed some copy, added more copy, and added a Bilibili link.'
+      },
+      tip: {
+        zh: '周四 v 我 50 😋',
+        en: 'Thursday: V me 50 😋'
+      }
+    },
+    {
+      date: '2026-06-15',
+      cat: 'site',
+      title: {
+        zh: '新增收藏夹',
+        en: 'Added a favorites section'
+      },
+      body: {
+        zh: '新增收藏夹，并补充了一些文案。',
+        en: 'Added a favorites section along with some copy.'
+      }
+    },
+    {
+      date: '2026-05-09',
+      cat: 'site',
+      title: {
+        zh: '站点上线',
+        en: 'Site launched'
+      },
+      body: {
+        zh: '创建了网页，并加入小游戏。',
+        en: 'Created the site and added a small game.'
+      }
+    }
+  ];
+
+  var CAT_COLOR = { site: 'clay', music: 'sky', note: 'gold' };
+
+  var stored = localStorage.getItem('esahhk-lang');
+  var lang = (stored === 'en' || stored === 'zh') ? stored : 'zh';
+  var currentFilter = 'all';
+
+  var timeline = document.getElementById('timeline');
+  var langBtn = document.getElementById('langBtn');
+  var shareBtn = document.getElementById('shareBtn');
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+
+  function t(key) {
+    var dict = I18N[lang] || I18N.zh;
+    return Object.prototype.hasOwnProperty.call(dict, key) ? dict[key] : (I18N.zh[key] || key);
+  }
+
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toastEl.classList.remove('show');
+    }, 2200);
+  }
+
+  var observer = null;
+
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(function (items) {
+      items.forEach(function (item) {
+        if (item.isIntersecting) {
+          item.target.classList.add('in');
+          observer.unobserve(item.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }
+
+  function observeEntries() {
+    var nodes = timeline.querySelectorAll('.entry');
+    for (var i = 0; i < nodes.length; i++) {
+      if (observer) {
+        observer.observe(nodes[i]);
+      } else {
+        nodes[i].classList.add('in');
+      }
+    }
+  }
+
+  function render() {
+    var list = currentFilter === 'all'
+      ? ENTRIES
+      : ENTRIES.filter(function (item) { return item.cat === currentFilter; });
+
+    if (!list.length) {
+      timeline.innerHTML = '<p class="empty">' + t('empty') + '</p>';
+      return;
+    }
+
+    var html = '';
+    for (var i = 0; i < list.length; i++) {
+      var item = list[i];
+      var color = CAT_COLOR[item.cat] || 'clay';
+      var dateText = item.date.replace(/-/g, '.');
+      var title = item.title[lang] || item.title.zh;
+      var body = item.body[lang] || item.body.zh;
+      var tip = item.tip ? (item.tip[lang] || item.tip.zh) : '';
+
+      html += '<article class="entry" style="--accent: var(--' + color + ')">' +
+        '<div class="entry-meta">' +
+          '<time datetime="' + item.date + '">' + dateText + '</time>' +
+          '<span class="sep">·</span>' +
+          '<span class="cat">' + t('cat_' + item.cat) + '</span>' +
+        '</div>' +
+        '<h3>' + title + '</h3>' +
+        '<p>' + body + '</p>' +
+        (tip ? '<div class="entry-tip"><span class="tip-label">' + t('tipLabel') + '</span>' + tip + '</div>' : '') +
+      '</article>';
+    }
+
+    timeline.innerHTML = html;
+    observeEntries();
+  }
+
+  function applyI18n() {
+    document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+    document.title = t('pageTitle');
+
+    var nodes = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].textContent = t(nodes[i].getAttribute('data-i18n'));
+    }
+
+    var titled = document.querySelectorAll('[data-i18n-title]');
+    for (var j = 0; j < titled.length; j++) {
+      titled[j].title = t(titled[j].getAttribute('data-i18n-title'));
+    }
+
+    var labeled = document.querySelectorAll('[data-i18n-aria-label]');
+    for (var k = 0; k < labeled.length; k++) {
+      labeled[k].setAttribute('aria-label', t(labeled[k].getAttribute('data-i18n-aria-label')));
+    }
+
+    langBtn.textContent = lang === 'zh' ? 'EN' : '中';
+    render();
+  }
+
+  langBtn.addEventListener('click', function () {
+    lang = lang === 'zh' ? 'en' : 'zh';
+    localStorage.setItem('esahhk-lang', lang);
+    applyI18n();
+    document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: lang } }));
+  });
+
+  shareBtn.addEventListener('click', function () {
+    var url = window.location.href;
+    if (navigator.share) {
+      navigator.share({ title: t('pageTitle'), url: url }).catch(function (err) {
+        if (err && err.name === 'AbortError') return;
+        showToast(t('copyFailed'));
+      });
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () {
+        showToast(t('copied'));
+      }).catch(function () {
+        showToast(t('copyFailed'));
+      });
+      return;
+    }
+    showToast(t('copyFailed'));
+  });
+
+  var filterButtons = document.querySelectorAll('.nav-inner button');
+  for (var f = 0; f < filterButtons.length; f++) {
+    filterButtons[f].addEventListener('click', function () {
+      currentFilter = this.getAttribute('data-filter');
+      for (var n = 0; n < filterButtons.length; n++) {
+        filterButtons[n].setAttribute('aria-selected', filterButtons[n] === this ? 'true' : 'false');
+      }
+      render();
+    });
+  }
+
+  applyI18n();
+})();
+</script>
+</body>
+</html>
